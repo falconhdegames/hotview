@@ -1,0 +1,26 @@
+import random
+lst = ['robot'] * 10
+lst += ['human'] * 10
+random.shuffle(lst)
+data = pd.DataFrame({'whoAmI':lst})
+data.head()
+
+values = []
+for header in data:
+  for elem in header:
+    if not elem in values:
+      values.append(elem)
+
+newdata_dict = {}
+for value in values:
+  newdata_dict[value] = []
+
+for header in data:
+  for element in values:
+    if element == 'robot':
+      newdata_dict[element].append('1')
+    else:
+      newdata_dict[element].append('0')
+newdata = pd.DataFrame(newdata_dict)
+print(data)
+print(newdata)
